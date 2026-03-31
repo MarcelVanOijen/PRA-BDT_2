@@ -22,20 +22,9 @@
   s_YC        <- rast( sapply( 1:19, function(i){
     xapp( r_alt, s_prec[[i]], fun=YC )} ) )
 
-  kz <- 30 ; r_u <- r_YC_2000 * kz
-
-  IRRIG      <- 500 ; ka <- 0.1
-  r_YC.IRRIG <- xapp( r_alt, r_prec_2000 + IRRIG, fun=YC    )
-  r_u.IRRIG  <- r_YC.IRRIG * kz - IRRIG * ka
-
-  par( mfrow=c(1,2), mar=c(3,3,3,1), cex=0.7 )
-
-  plot( r_u            , main="Utility" ) ; plot( gadm5, add=T)
-  plot( r_u.IRRIG - r_u, main="Utility-gain from irrigation", zlim=c(-50,50) )
-                                            plot( gadm5, add=T)
-
 ## Multiple Action Levels
 
+  kz <- 30 ; ka <- 0.1
   nI    <- 10 ; layers <- 1:nI ; IRRIG <- (layers-1)*50
   s_u.a <- NULL
   for(i in layers) {
